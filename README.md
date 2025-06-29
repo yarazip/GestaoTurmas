@@ -4,11 +4,10 @@ Este projeto consiste em uma aplicação completa para a **Gestão de Turmas**, 
 
 ## 🛠️ Tecnologias Utilizadas
 
-- Linguagem: Java / Python / PHP / (especifique)
-- Framework: Spring Boot / Django / Laravel / (especifique)
-- Banco de Dados: MySQL / PostgreSQL / H2 / (especifique)
-- Front-end: HTML/CSS/JavaScript / Angular / React / (opcional)
-- Ferramentas: Postman, Insomnia, VS Code, IntelliJ, etc.
+- Linguagem: Java 
+- Framework: Spring Boot
+- Banco de Dados: PostgreSQL 
+- Front-end: HTML/CSS/JavaScript /
 
 ## 📁 Estrutura do Projeto
 
