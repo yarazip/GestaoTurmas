@@ -1,0 +1,123 @@
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.3/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+
+	<style>
+		.bg-preto {
+			background-color: #000000 !important;
+		}
+	</style>
+
+	<title>Painel de Usuário</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+	
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-preto">
+			<div class="collapse navbar-collapse" id="textoNavbar">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" th:href="@{/dashboard}"><i class="fa fa-home"></i>Home</a>
+					</li>
+					<!-- Dropdown aluno -->
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+							<i class="fa fa-user"></i>Aluno
+						</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" th:href="@{/aluno/editar}"><i class="fa fa-pencil-square"></i>Editar</a>
+							<a class="dropdown-item" th:href="@{/aluno/deletar}"><i class="fa fa-trash"></i>Excluir</a>
+							<a class="dropdown-item" th:href="@{/aluno/inserir}"><i class="fa fa-graduation-cap"></i>Inserir</a>
+							<a class="dropdown-item" th:href="@{/aluno/listar}"><i class="fa fa-search"></i>Listar</a>
+						</div>
+					</li>
+					<!-- Dropdown Professor -->
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+							<i class="fa fa-user"></i>Professor
+						</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" th:href="@{/professor/editar}"><i class="fa fa-pencil-square"></i>Editar</a>
+							<a class="dropdown-item" th:href="@{/professor/deletar}"><i class="fa fa-trash"></i>Excluir</a>
+							<a class="dropdown-item" th:href="@{/professor/inserir}"><i class="fa fa-graduation-cap"></i>Inserir</a>
+							<a class="dropdown-item" th:href="@{/professor/listar}"><i class="fa fa-search"></i>Listar</a>
+						</div>
+					</li>
+					<!-- Dropdown Turma -->
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+							<i class="fa fa-user"></i>Turma
+						</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" th:href="@{/turma/editar}"><i class="fa fa-pencil-square"></i>Editar</a>
+							<a class="dropdown-item" th:href="@{/turma/deletar}"><i class="fa fa-trash"></i>Excluir</a>
+							<a class="dropdown-item" th:href="@{/turma/inserir}"><i class="fa fa-graduation-cap"></i>Inserir</a>
+							<a class="dropdown-item" th:href="@{/turma/listar}"><i class="fa fa-search"></i>Listar</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+	<main class="flex-fill">
+		<section class="neo-section">
+			<div class="container mb-5">
+				<div id="login">
+					<h2>+ Inserir um novo Professor</h2>
+					<div class="container">
+						<div id="login-row" class="row justify-content-center align-items-center">
+							<div id="login-column" class="col-md-6">
+								<div id="login-box" class="col-md-12">
+									<form id="cadastro-form" class="form" th:object="${professor}" action="/professor/inserir" method="post">
+										<div class="p-4 border rounded bg-light">
+											<div class="alert alert-danger" role="alert" th:if="${msg}">
+												<strong th:text="${msg}"></strong>
+											</div>
+											<div class="form-group">
+												<label for="nome" class="text-dark">Nome:</label>
+												<input type="text" class="form-control" name="nome" id="nome" th:field="*{nome}" placeholder="Digite o nome" required>
+											</div>
+											<div class="form-group">
+												<label for="email" class="text-dark">Email:</label>
+												<input type="email" class="form-control" name="email" id="email" th:field="*{email}" placeholder="Digite o email" required>
+											</div>
+											<div class="form-group">
+												<label for="cpf" class="text-dark">Cpf:</label>
+												<input type="text" maxlength="11" pattern="[0-9]{11}" class="form-control" name="cpf" id="cpf" th:field="*{cpf}" placeholder="CPF (apenas números)" required>
+											</div>
+											<div class="form-group">
+												<label for="titulacao" class="text-dark">Selecione o Titulação:</label><br>
+												<select name="titulacao" id="curso" class="form-control" th:field="*{titulacao}">
+													<option th:each="titulacao:${T(com.projeto.ads.Enum.Titulacao).values()}" th:value="${titulacao}" th:text="${titulacao}"></option>
+												</select>
+											</div>
+											<div class="form-group">
+												<div class="text-center">
+													<button type="submit" class="btn btn-success">Salvar</button>
+												</div>
+											</div>	
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="bg-preto text-center text-lg-start">
+		<div class="text-center p-3" style="color: #fff; font-weight: bold;">
+			2025 Copyright: SENAC
+		</div>
+	</footer>
+
+</body>
+</html>
